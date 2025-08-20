@@ -1,4 +1,3 @@
-// src/utils/filterAvailableProducts.js
 export function filterAvailableProducts(data) {
   const { brands, categories, subCategories, segments, products } = data;
 
@@ -19,8 +18,8 @@ export function filterAvailableProducts(data) {
     const cat = categoryMap.get(prod.category?._id);
     if (!cat || !cat.isAvailable) return false;
 
-    const brand = [...brandMap.values()].find((b) => b.isAvailable);
-    if (!brand) return false;
+    const brand = brandMap.get(prod.brand?._id);
+    if (!brand || !brand.isAvailable) return false;
 
     return true;
   });
